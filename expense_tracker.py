@@ -34,13 +34,22 @@ def enterance():
     print("5. Выход")
 
 def add_expense():
-    name = input("Введите название расхода: ")
+    flag = False
+    while not flag:
+        name = input("Введите название расхода: ").strip()
+        if name.strip() == "":
+            print("Ошибка! Название расхода не может быть пустым.")
+        else:
+            flag = True
     category = input("Введите категорию расхода: ")
     amount_is_valid = False
 
     while not amount_is_valid:
         try:
             amount = float(input("Введите сумму расхода: "))
+            if amount <= 0:
+                print("Ошибка! Сумма расхода не может быть отрицательной или нулевой.")
+                continue
             amount_is_valid = True
         except ValueError:
             print("Ошибка! Введите число.")
